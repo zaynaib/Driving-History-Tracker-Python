@@ -6,6 +6,7 @@ class Person:
         self.user_time = 0
         self.user_speed = 0
         self.total_miles = 0
+    
         super().__init__()
     
     def myfunc(self):
@@ -22,12 +23,14 @@ class Person:
         self.user_time = self.user_time + time
         return time
 
+    '''
     #format time difference into a decimal
     def hours(self, td):
         hours,remainder = divmod(td.seconds,3600)
         mintues, seconds = divmod(remainder,60)
         time = hours + (mintues/100)
         return time
+    '''
 
     #miles per hour
 
@@ -40,6 +43,7 @@ class Person:
     def miles(self,miles):
         self.total_miles = self.total_miles + miles
 
+'''
 
 p1 = Person('John')
 p1.myfunc()
@@ -52,3 +56,4 @@ print(p1.user_time)
 
 print(p1.diff("10:00","12:00"))
 print(p1.user_time)
+'''

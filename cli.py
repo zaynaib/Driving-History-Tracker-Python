@@ -10,7 +10,7 @@ if word is trip then do y
 #export my app.py class here then put this in a function in main
 from app import Person
 
-driver_list = []
+driver_list = {}
 
 #have class that creates drivers from text filea
 
@@ -23,25 +23,25 @@ with open(filepath) as fp:
    for line in fp:
        if 'Driver' in line:
 
-           #get drivers name
-           driver = line[6:]
+           driver = line[6:].strip()
+           person_driver=Person(driver)
 
-           #create a person
-           person_driver = Person(driver)
-
-           #save person in a data structure - list
-           driver_list.append(person_driver)
+           driver_list[driver] = person_driver
+        
 
 print(driver_list)
 #put driver list as a set to re move dups
 
+
+
 #open the file and save number of miles and times each person object
 with open(filepath) as fp:
    for line in fp:
-       driver_name =''
+       driver_name = ''
        start = ''
        end = ''
        miles = ''
+    
        if 'Trip' in line:
            #split line
            split_line = line.split()
@@ -50,11 +50,21 @@ with open(filepath) as fp:
            driver_name = split_line[1]
            start = split_line[2]
            end = split_line[3]
-           miles = split_line[4]
+           miles = float(split_line[4])
+           print(miles)
+
+           if driver_list[driver_name]:
+               driver_list[driver_name].diff(start,end)
+               driver_list[driver_name].miles(miles)
+               driver_list[driver_name].speed(driver_list[driver_name].total_miles,driver_list[driver_name].user_time )
+               
+
+print(driver_list['Dan'].total_miles)
+print(driver_list['Dan'].user_speed)
+
+
+
            
-           for driver in driver_list:
-               if driver_name == driver.name:
-                   print('hello')
                
 
        
