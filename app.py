@@ -5,6 +5,7 @@ class Person:
         self.name = name
         self.user_time = 0
         self.user_speed = 0
+        self.total_miles = 0
         super().__init__()
     
     def myfunc(self):
@@ -35,11 +36,19 @@ class Person:
         self.user_speed = self.user_speed + mph
         return mph
 
+    #total miles
+    def miles(self,miles):
+        self.total_miles = self.total_miles + miles
+
 
 p1 = Person('John')
 p1.myfunc()
 print(p1.diff("10:00","12:00"))
 print(p1.user_time)
+
+print(p1.diff("10:00","12:00"))
+print(p1.user_time)
+
 
 print(p1.diff("10:00","12:00"))
 print(p1.user_time)
