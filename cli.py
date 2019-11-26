@@ -18,7 +18,7 @@ driver_list = []
 
 filepath = 'trips.txt'
 
-#figure how to account for dup names
+#open the file and create a person/driver object
 with open(filepath) as fp:
    for line in fp:
        if 'Driver' in line:
@@ -35,15 +35,27 @@ with open(filepath) as fp:
 print(driver_list)
 #put driver list as a set to re move dups
 
-
+#open the file and save number of miles and times each person object
 with open(filepath) as fp:
    for line in fp:
+       driver_name =''
+       start = ''
+       end = ''
+       miles = ''
        if 'Trip' in line:
+           #split line
            split_line = line.split()
+
+           #separate useful information
            driver_name = split_line[1]
            start = split_line[2]
            end = split_line[3]
            miles = split_line[4]
+           
+           for driver in driver_list:
+               if driver_name == driver.name:
+                   print('hello')
+               
 
        
            
