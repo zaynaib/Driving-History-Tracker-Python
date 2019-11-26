@@ -16,7 +16,6 @@ driver_list = []
 
 #have a class that calculates trips
 
-
 filepath = 'trips.txt'
 
 #figure how to account for dup names
@@ -36,27 +35,28 @@ with open(filepath) as fp:
 print(driver_list)
 #put driver list as a set to re move dups
 
-'''
 
 with open(filepath) as fp:
    for line in fp:
        if 'Trip' in line:
-           #split each line
-           line_split = line.split()
-           name = line_split[1]
-           start = line_split[2]
-           end = line_split[3]
-           miles = line_split[4]
+           split_line = line.split()
+           driver_name = split_line[1]
+           start = split_line[2]
+           end = split_line[3]
+           miles = split_line[4]
 
-           for driver in driver_list:
-               if name in driver_list:
-                   driver.diff(end,start)
-                   driver.miles(miles)
-           print(line_split)
+       
+           
+               
+        
 
-            
-'''
-#print(driver_list)
+          # print(driver_name)
+
+           
+
+           
+
+#print(driver_list[0].name,"driver name")
 
 
 #for driver in driver_list:
