@@ -27,7 +27,7 @@ with open(filepath) as fp:
            person_driver=Person(driver)
 
            driver_list[driver] = person_driver
-        
+
 
 print(driver_list)
 #put driver list as a set to re move dups
@@ -59,8 +59,8 @@ with open(filepath) as fp:
                driver_list[driver_name].speed(driver_list[driver_name].total_miles,driver_list[driver_name].user_time )
                
 
-print(driver_list['Dan'].total_miles)
-print(driver_list['Dan'].user_speed)
+print(driver_list['Lauren'].total_miles)
+print(driver_list['Lauren'].user_speed)
 
 
 

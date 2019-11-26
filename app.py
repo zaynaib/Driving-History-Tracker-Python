@@ -36,24 +36,25 @@ class Person:
 
     def speed(self, distance,time):
         mph = distance/time
-        self.user_speed = self.user_speed + mph
+        if mph < 5 or mph > 100:
+            self.user_speed = self.user_speed + 0
+        else:
+            self.user_speed = self.user_speed + mph
         return mph
 
     #total miles
     def miles(self,miles):
         self.total_miles = self.total_miles + miles
 
-'''
 
 p1 = Person('John')
 p1.myfunc()
-print(p1.diff("10:00","12:00"))
+print(p1.diff("12:01","13:16"))
 print(p1.user_time)
 
-print(p1.diff("10:00","12:00"))
-print(p1.user_time)
+#print(p1.diff("10:00","12:00"))
+#print(p1.user_time)
 
 
-print(p1.diff("10:00","12:00"))
-print(p1.user_time)
-'''
+#print(p1.diff("10:00","12:00"))
+#print(p1.user_time)
