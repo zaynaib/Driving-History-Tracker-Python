@@ -1,4 +1,5 @@
 from datetime import datetime
+#https://www.calculatorsoup.com/calculators/math/speed-distance-time-calculator.php
 
 class Driver:
     def __init__(self,name):
@@ -24,12 +25,10 @@ class Driver:
         if mph < 5 or mph > 100:
             self.user_speed = self.user_speed + 0
 
-        #dan's use case when distance is less than an 1
-        #! think about it some more
+       
         elif time < 1:
-            mph = distance * (60/time)
+            mph = distance * (60/(time*100))
             self.user_speed = self.user_speed + mph
-            self.user_speed = round(self.user_speed)
             
         else:
             self.user_speed = self.user_speed + mph
@@ -39,17 +38,20 @@ class Driver:
     #total miles
     def miles(self,miles):
         self.total_miles = self.total_miles + miles
-        self.total_miles = round(self.total_miles)
+        self.total_miles = self.total_miles
 
     def print_out(self):
         return "{}: {} miles @ {} mph".format(self.name, self.total_miles,self.user_speed)
 
 
-
+'''
 p1 = Driver('John')
 print(p1.name)
 print(p1.diff("12:01","13:16"))
 print(p1.user_time)
+p1.user_time = 0.50
+p1.speed(39.1,p1.user_time)
+'''
 
 
 #print(p1.diff("10:00","12:00"))
