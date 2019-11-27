@@ -2,7 +2,6 @@
 from app import Driver
 
 #have a class that calculates trips
-driver_dict = {}
 
 filepath = 'trips.txt'
 
@@ -21,7 +20,7 @@ def initDriver(filepath):
     return driver_dict
 
 
-print(initDriver(filepath))
+#print(initDriver(filepath))
 
 
 def driverInfo(driver_dict):
@@ -49,19 +48,21 @@ def driverInfo(driver_dict):
                     user_time = driver_obj.diff(start,end)
                     user_miles = driver_obj.miles(miles)
                     driver_obj.speed(user_miles,user_time)
-                    #driver_dict[driver_name].speed(driver_dict[driver_name].total_miles,driver_dict[driver_name].user_time )
         return driver_dict
                
 
-driver_infomation = initDriver(filepath)
-x = driverInfo(driver_infomation)
-print(x)
-print(x['Lauren'].total_miles,'lauren miles')
-print(x['Lauren'].user_speed)
-print(x['Lauren'].print_out())
-print(x['Dan'].print_out())
-print(x['Dan'].user_time,'dan time')
-print(x['Dan'].total_miles,'dan miles')
+if __name__ == '__main__':
+    initDriver(filepath)
+    driver_infomation = initDriver(filepath)
+    x = driverInfo(driver_infomation)
+    print(x)
+    print(x['Lauren'].total_miles,'lauren miles')
+    print(x['Lauren'].user_speed)
+    print(x['Lauren'].print_out())
+    print(x['Dan'].print_out())
+    print(x['Dan'].user_time,'dan time')
+    print(x['Dan'].total_miles,'dan miles')
+    print(x['Kumi'].print_out())
 
 
 
@@ -74,31 +75,4 @@ print(x['Dan'].total_miles,'dan miles')
                
         
 
-          # print(driver_name)
-
-           
-
-           
-
-#print(driver_list[0].name,"driver name")
-
-
-#for driver in driver_list:
-#    driver.myfunc()
-'''
-with open(filepath) as fp:
-   line = fp.readline()
-   cnt = 1
-   while line:
-       #if line contains driver print drive
-       #if line contains trip then do hey
-
-       if 'Driver' in line:
-           #create a constructor with the name of driver
-           print(line[6:])
-           #print("Line {}: {}".format(cnt, line.strip()))
-           line = fp.readline()
-
-       #if trip use the method
-       cnt += 1
-'''
+ 
