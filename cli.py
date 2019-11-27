@@ -26,13 +26,9 @@ def initDriver(filepath):
 def driverInfo(driver_dict):
     #open the file and save number of miles and times each person object
     with open(filepath) as fp:
-        for line in fp:
-            #driver_name = ''
-            #start = ''
-            #end = ''
-            #miles = ''
-            
+        for line in fp:            
             if 'Trip' in line:
+
                 #split line
                 split_line = line.split()
 
@@ -41,7 +37,6 @@ def driverInfo(driver_dict):
                 start = split_line[2]
                 end = split_line[3]
                 miles = float(split_line[4])
-                print(miles)
 
                 if driver_dict[driver_name]:
                     driver_obj = driver_dict[driver_name]

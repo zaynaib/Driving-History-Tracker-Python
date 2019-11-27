@@ -20,11 +20,10 @@ class Driver:
 
     def speed(self, distance,time):
         mph = 0
-              
+
         if self.user_time < 1:
             mph = distance * (60/(time*100))
             self.user_speed = round(self.user_speed + mph,2)
-            print('time less than hour')
             
         else:
             mph = distance/time
@@ -46,19 +45,4 @@ class Driver:
         return "{}: {} miles @ {} mph".format(self.name, round(self.total_miles),round(self.user_speed))
 
 
-'''
-p1 = Driver('John')
-print(p1.name)
-print(p1.diff("12:01","13:16"))
-print(p1.user_time)
-p1.user_time = 0.50
-p1.speed(39.1,p1.user_time)
-'''
 
-
-#print(p1.diff("10:00","12:00"))
-#print(p1.user_time)
-
-
-#print(p1.diff("10:00","12:00"))
-#print(p1.user_time)
