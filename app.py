@@ -1,36 +1,21 @@
 from datetime import datetime
 
-class Person:
+class Driver:
     def __init__(self,name):
         self.name = name
         self.user_time = 0
         self.user_speed = 0
         self.total_miles = 0
-    
-        super().__init__()
-    
-    def myfunc(self):
-        print("Hello my name is " + self.name)
-
+        
     # get time difference
     def diff(self,startTime, endTime):
         FMT = '%H:%M'
         tdelta = datetime.strptime(endTime, FMT) - datetime.strptime(startTime, FMT)
-        
         hours,remainder = divmod(tdelta.seconds,3600)
         mintues,seconds = divmod(remainder,60)
         time = hours + (mintues/100)
         self.user_time = self.user_time + time
         return time
-
-    '''
-    #format time difference into a decimal
-    def hours(self, td):
-        hours,remainder = divmod(td.seconds,3600)
-        mintues, seconds = divmod(remainder,60)
-        time = hours + (mintues/100)
-        return time
-    '''
 
     #miles per hour
 
@@ -38,19 +23,34 @@ class Person:
         mph = distance/time
         if mph < 5 or mph > 100:
             self.user_speed = self.user_speed + 0
+
+        #dan's use case when distance is less than an 1
+        #! think about it some more
+        elif time < 1:
+            mph = distance * (60/time)
+            self.user_speed = self.user_speed + mph
+            self.user_speed = round(self.user_speed)
+            
         else:
             self.user_speed = self.user_speed + mph
+            self.user_speed = round(self.user_speed)
         return mph
 
     #total miles
     def miles(self,miles):
         self.total_miles = self.total_miles + miles
+        self.total_miles = round(self.total_miles)
+
+    def print_out(self):
+        return "{}: {} miles @ {} mph".format(self.name, self.total_miles,self.user_speed)
 
 
-p1 = Person('John')
-p1.myfunc()
+
+p1 = Driver('John')
+print(p1.name)
 print(p1.diff("12:01","13:16"))
 print(p1.user_time)
+
 
 #print(p1.diff("10:00","12:00"))
 #print(p1.user_time)
