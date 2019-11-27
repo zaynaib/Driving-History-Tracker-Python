@@ -1,6 +1,4 @@
 from datetime import datetime
-#https://www.calculatorsoup.com/calculators/math/speed-distance-time-calculator.php
-
 class Driver:
     def __init__(self,name):
         self.name = name
