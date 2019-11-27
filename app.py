@@ -1,10 +1,37 @@
-from datetime import datetime
+from datetime import 
+class Trip:
+    def __init__(self, start, end, distance):
+        self.start = start
+        self.end = end
+        self.distance = distance
+
+    def duration():
+        # get diff between start and end in minutes
+        pass
+
+    def speed():
+        # get MPH
+        pass
+
 class Driver:
     def __init__(self,name):
         self.name = name
         self.user_time = 0
         self.user_speed = 0
         self.total_miles = 0
+        self.trips = []
+
+    def addTrip(self, start, end, distance):
+        trip = Trip(start, end, distance)
+        if trip.speed() > 5 and trip.speed() < 100:
+            self.trips.append(trip)
+
+    def getTotalDistance(self):
+        distances = [trip.distance for trip in self.trips]
+        total = 0
+        for d in distances:
+            total = total + d
+        return total
         
     # get time difference
     def diff(self,startTime, endTime):
