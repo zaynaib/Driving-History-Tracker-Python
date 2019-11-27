@@ -1,7 +1,6 @@
 #export my app.py class here then put this in a function in main
 from app import Driver
 
-
 #have a class that calculates trips
 driver_dict = {}
 
@@ -23,8 +22,6 @@ def initDriver(filepath):
 
 
 print(initDriver(filepath))
-#put driver list as a set to re move dups
-
 
 
 def driverInfo(driver_dict):
@@ -48,20 +45,23 @@ def driverInfo(driver_dict):
                 print(miles)
 
                 if driver_dict[driver_name]:
-                    driver_dict[driver_name].diff(start,end)
-                    driver_dict[driver_name].miles(miles)
-                    driver_dict[driver_name].speed(driver_dict[driver_name].total_miles,driver_dict[driver_name].user_time )
+                    driver_obj = driver_dict[driver_name]
+                    user_time = driver_obj.diff(start,end)
+                    user_miles = driver_obj.miles(miles)
+                    driver_obj.speed(user_miles,user_time)
+                    #driver_dict[driver_name].speed(driver_dict[driver_name].total_miles,driver_dict[driver_name].user_time )
         return driver_dict
                
 
 driver_infomation = initDriver(filepath)
 x = driverInfo(driver_infomation)
 print(x)
-print(x['Lauren'].total_miles)
+print(x['Lauren'].total_miles,'lauren miles')
 print(x['Lauren'].user_speed)
 print(x['Lauren'].print_out())
 print(x['Dan'].print_out())
-print(x['Dan'].user_time)
+print(x['Dan'].user_time,'dan time')
+print(x['Dan'].total_miles,'dan miles')
 
 
 

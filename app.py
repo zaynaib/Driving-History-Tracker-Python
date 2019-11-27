@@ -14,29 +14,31 @@ class Driver:
         mintues,seconds = divmod(remainder,60)
         time = hours + (mintues/100)
         self.user_time = self.user_time + time
-        return time
+        return self.user_time
 
     #miles per hour
 
     def speed(self, distance,time):
-        mph = distance/time
-        if mph < 5 or mph > 100:
-            self.user_speed = self.user_speed + 0
-
-       
-        elif time < 1:
+        mph = 0
+              
+        if self.user_time < 1:
             mph = distance * (60/(time*100))
             self.user_speed = round(self.user_speed + mph,2)
+            print('time less than hour')
             
         else:
+            mph = distance/time
             self.user_speed = round(self.user_speed + mph,2)
-            #self.user_speed = self.user_speed
-        #return mph
+        
+        if mph< 5 or mph > 100:
+            self.user_speed = 0
+        return self.user_speed
 
     #total miles
     def miles(self,miles):
         self.total_miles = self.total_miles + miles
         self.total_miles = self.total_miles
+        return self.total_miles
 
     def print_out(self):
         if self.total_miles == 0:
