@@ -26,12 +26,12 @@ class Driver:
        
         elif time < 1:
             mph = distance * (60/(time*100))
-            self.user_speed = self.user_speed + mph
+            self.user_speed = round(self.user_speed + mph,2)
             
         else:
-            self.user_speed = self.user_speed + mph
-            self.user_speed = round(self.user_speed)
-        return mph
+            self.user_speed = round(self.user_speed + mph,2)
+            #self.user_speed = self.user_speed
+        #return mph
 
     #total miles
     def miles(self,miles):
@@ -39,7 +39,9 @@ class Driver:
         self.total_miles = self.total_miles
 
     def print_out(self):
-        return "{}: {} miles @ {} mph".format(self.name, self.total_miles,self.user_speed)
+        if self.total_miles == 0:
+            return "{}: {} miles".format(self.name, self.total_miles)
+        return "{}: {} miles @ {} mph".format(self.name, round(self.total_miles),round(self.user_speed))
 
 
 '''
