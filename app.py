@@ -4,65 +4,45 @@ class Trip:
         self.start = start
         self.end = end
         self.distance = distance
+        self.minutes = 0
 
-
-    def duration(self, startTime, endTime):
+    def duration(self):
         # get diff between start and end in minutes
         time_format = '%H:%M'
-        delta_time = datetime.strptime(endTime, time_format) - datetime.strptime(startTime,time_format)
-        mintues = delta_time.seconds/60
-        return mintues
-        
+        delta_time = datetime.strptime(self.end, time_format) - datetime.strptime(self.start,time_format)
+        self.minutes = delta_time.seconds/60
+        return self.minutes
     #miles per hour   
-    def speed(self,distance,time):
-        mph = (distance/time)* 60
+    def speed(self):
+        mph = (self.distance/self.minutes)* 60
         return mph
 
 t1 = Trip("12:01","13:16",42.0)
 print(t1.start)
 print(t1.end)
-print(t1.duration(t1.start,t1.end))
-print(t1.speed(42.0,75.0))
+print(t1.duration())
+#print(t1.speed(42.0,75.0))
+print(t1.speed())
+
 
 class Driver:
     def __init__(self,name):
         self.name = name
-        self.user_time = 0
         self.user_speed = 0
         self.total_miles = 0
         self.trips = []
 
     def addTrip(self, start, end, distance):
         trip = Trip(start, end, distance)
+        trip.duration()
         if trip.speed() > 5 and trip.speed() < 100:
             self.trips.append(trip)
 
     def getTotalDistance(self):
         distances = [trip.distance for trip in self.trips]
-        total = 0
         for d in distances:
-            total = total + d
-        return total
-        
-    # get time difference
-
-
-    #miles per hour
-
-    def speed(self, distance,time):
-        mph = 0
-
-        if self.user_time < 1:
-            mph = distance * (60/(time*100))
-            self.user_speed = round(self.user_speed + mph,2)
-            
-        else:
-            mph = distance/time
-            self.user_speed = round(self.user_speed + mph,2)
-        
-        if mph< 5 or mph > 100:
-            self.user_speed = 0
-        return self.user_speed
+            self.total_miles = self.total_miles + d
+        return self.total_miles
 
     #total miles
     def miles(self,miles):
@@ -77,3 +57,15 @@ class Driver:
 
 
 
+p1 = Driver("Lauren")
+print(p1.name)
+p1.addTrip("12:01","13:16",42.0)
+print(p1.getTotalDistance())
+
+
+p2 = Driver("Dan")
+print(p2.name)
+#p2.addTrip("07:15","07:45",17.3)
+#p2.addTrip("06:12","06:32",21.8)
+
+#print(p2.getTotalDistance())
