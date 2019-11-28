@@ -1,12 +1,12 @@
 import unittest
 from app import Driver
-from cli import initDriver, driverInfo
+from cli import initDriver, driverTrips, driverOutput
 
 class TestCLIMethods(unittest.TestCase):
     #setup
     def setUp(self):
         self.drivers = initDriver('trips.txt')
-        self.driver_info = driverInfo(self.drivers)
+        self.driver_trips = driverTrips(self.drivers)
        
 
     def test_initDriver(self):
@@ -15,44 +15,29 @@ class TestCLIMethods(unittest.TestCase):
         self.assertEqual(self.drivers['Kumi'].name, 'Kumi')
         self.assertEqual(self.drivers['Lauren'].name, 'Lauren')
 
-    def test_driverInfo(self):
-        self.assertEqual(len(self.driver_info),3)
+    def test_driverTrips(self):
+        self.assertEqual(len(self.driver_trips),3)
 
-        lauren = self.driver_info['Lauren']
-        self.assertEqual(lauren.name, 'Lauren')
-        self.assertEqual(lauren.total_miles,42.0)
-        self.assertEqual(lauren.user_time,1.15)
-        self.assertEqual(lauren.user_speed,36.52)
-        self.assertEqual(lauren.print_out(), "Lauren: 42 miles @ 34 mph")
+        #lauren
 
+        lauren = self.driver_trips['Lauren']
+        self.assertEqual(lauren.name, 'Lauren') 
 
-        dan = self.driver_info['Dan']
-        self.assertEqual(dan.name, 'Dan')
-        self.assertEqual(dan.total_miles,39.1)
-        self.assertEqual(dan.user_time,0.5)
-        #self.assertEqual(dan.user_speed,46.92)
+        self.assertEqual(len(lauren.trips),1)
+        self.assertEqual(lauren.trips[0].start,"12:01")
+        self.assertEqual(lauren.trips[0].end,"13:16")
+        self.assertEqual(lauren.trips[0].distance,42)
+        self.assertEqual(lauren.trips[0].minutes,75)
 
-        
-        kumi = self.driver_info['Kumi']
-        self.assertEqual(kumi.name, 'Kumi')
-        self.assertEqual(kumi.total_miles,0)
-        self.assertEqual(kumi.user_time,0)
-        self.assertEqual(kumi.user_speed,0)
-        self.assertEqual(kumi.print_out(), "Kumi: 0 miles")
+       #dan
 
-
-
-
-
-
-        
-        #self.assertEqual()
-
-
-
-    
-
-
+        dan = self.driver_trips['Dan']
+        self.assertEqual(dan.name, 'Dan')        
+        self.assertEqual(len(dan.trips),2)
+        self.assertEqual(dan.trips[0].start,"07:15")
+        self.assertEqual(dan.trips[0].end,"07:45")
+        self.assertEqual(dan.trips[0].distance,17.3)
+        self.assertEqual(dan.trips[0].minutes,30)
     
 
 if __name__ == '__main__':
