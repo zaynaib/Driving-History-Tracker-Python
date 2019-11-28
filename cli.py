@@ -59,6 +59,7 @@ def calcTotal(d_info):
 def driverOutput(d_info):
     for driver in (sorted(d_info.values(),key=operator.attrgetter('total_miles'),reverse=True)):
         print(driver.print_output())
+
      
 
 if __name__ == '__main__':
@@ -81,15 +82,6 @@ if __name__ == '__main__':
 
 
 
-    '''
-    print(x['Lauren'].total_miles,'lauren miles')
-    print(x['Lauren'].user_speed)
-    print(x['Lauren'].print_out())
-    print(x['Dan'].print_out())
-    print(x['Dan'].user_time,'dan time')
-    print(x['Dan'].total_miles,'dan miles')
-    print(x['Kumi'].print_out())
-    '''
 
 
 

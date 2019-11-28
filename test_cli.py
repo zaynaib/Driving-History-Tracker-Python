@@ -1,12 +1,16 @@
 import unittest
 from app import Driver
-from cli import initDriver, driverTrips, driverOutput
+from cli import initDriver, driverTrips, driverOutput, calcTotal
+
 
 class TestCLIMethods(unittest.TestCase):
     #setup
     def setUp(self):
         self.drivers = initDriver('trips.txt')
         self.driver_trips = driverTrips(self.drivers)
+        self.totals = calcTotal(self.driver_trips)
+
+
        
 
     def test_initDriver(self):
@@ -38,7 +42,16 @@ class TestCLIMethods(unittest.TestCase):
         self.assertEqual(dan.trips[0].end,"07:45")
         self.assertEqual(dan.trips[0].distance,17.3)
         self.assertEqual(dan.trips[0].minutes,30)
-    
+
+    def test_calcTotal(self):
+        self.assertEqual(self.totals['Dan'].total_miles,39.1)
+
+    def test_driverOutput(self):
+        self.assertEqual(self.driver_trips['Dan'].print_output(), 'Dan: 39 miles @ 47 mph' )
+        self.assertEqual(self.driver_trips['Lauren'].print_output(), 'Lauren: 42 miles @ 34 mph' )
+        self.assertEqual(self.driver_trips['Kumi'].print_output(), 'Kumi: 0 miles' )
+
+
 
 if __name__ == '__main__':
     unittest.main()
