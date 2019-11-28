@@ -1,5 +1,5 @@
 #export my app.py class here then put this in a function in main
-from app import Driver
+from app import Driver, Trip
 
 #have a class that calculates trips
 
@@ -9,7 +9,6 @@ def initDriver(filepath):
     #open the file and create a person/driver object
     with open(filepath) as fp:
         driver_dict = {}
-
         for line in fp:
             if 'Driver' in line:
 
@@ -23,7 +22,7 @@ def initDriver(filepath):
 #print(initDriver(filepath))
 
 
-def driverInfo(driver_dict):
+def driverTrips(driver_dict):
     #open the file and save number of miles and times each person object
     with open(filepath) as fp:
         for line in fp:            
@@ -39,18 +38,41 @@ def driverInfo(driver_dict):
                 miles = float(split_line[4])
 
                 if driver_dict[driver_name]:
+                    #Get driver from dictionary
                     driver_obj = driver_dict[driver_name]
-                    user_time = driver_obj.diff(start,end)
-                    user_miles = driver_obj.miles(miles)
-                    driver_obj.speed(user_miles,user_time)
+
+                    #Add trips to driver
+                    driver_obj.addTrip(start,end,miles)
+                 
         return driver_dict
+
+    
+def driverOutput(d_info):
+    #open the file and save number of miles and times each person object
+    for key in d_info:
+        driver_obj = d_info[key]
+        print(driver_obj.print_output())
+    
                
 
 if __name__ == '__main__':
-    initDriver(filepath)
-    driver_infomation = initDriver(filepath)
-    x = driverInfo(driver_infomation)
-    print(x)
+  
+
+    #create drivers
+    create_drivers = initDriver(filepath)
+
+    #add trips
+    driver_trips = driverTrips(create_drivers)
+
+    #print drivers mile information
+    driverOutput(driver_trips)
+
+
+
+
+
+
+    '''
     print(x['Lauren'].total_miles,'lauren miles')
     print(x['Lauren'].user_speed)
     print(x['Lauren'].print_out())
@@ -58,6 +80,7 @@ if __name__ == '__main__':
     print(x['Dan'].user_time,'dan time')
     print(x['Dan'].total_miles,'dan miles')
     print(x['Kumi'].print_out())
+    '''
 
 
 

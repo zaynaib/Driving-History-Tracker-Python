@@ -28,8 +28,8 @@ print(t1.speed())
 
 class Driver:
     def __init__(self,name):
+        #do not create speed attribute
         self.name = name
-        self.user_speed = 0
         self.user_time = 0
         self.total_miles = 0
         self.trips = []
@@ -44,38 +44,25 @@ class Driver:
         distances = [trip.distance for trip in self.trips]
         for d in distances:
             self.total_miles = self.total_miles + d
-        return self.total_miles
 
     def getTotalTime(self):
         durations = [trip.minutes for trip in self.trips]
         for t in durations:
             self.user_time = self.user_time + t
-        return self.user_time
 
     #total miles
     def avg_speed(self):
         avg_mph = (self.total_miles/self.user_time) * 60
         return avg_mph
 
-    def print_out(self):
+
+    def print_output(self):
+
+        self.getTotalDistance()
+        self.getTotalTime()
+
         if self.total_miles == 0:
             return "{}: {} miles".format(self.name, self.total_miles)
         return "{}: {} miles @ {} mph".format(self.name, round(self.total_miles),round(self.avg_speed()))
 
 
-
-p1 = Driver("Lauren")
-print(p1.name)
-p1.addTrip("12:01","13:16",42.0)
-print(p1.getTotalDistance())
-
-
-p2 = Driver("Dan")
-print(p2.name)
-p2.addTrip("07:15","07:45",17.3)
-p2.addTrip("06:12","06:32",21.8)
-
-print(p2.getTotalDistance())
-print(p2.getTotalTime())
-print(p2.avg_speed())
-print(p2.print_out())

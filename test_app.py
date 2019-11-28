@@ -1,69 +1,55 @@
 import unittest
-from app import Driver, Trip
+from app import Driver
 
-'''
-t1 = Trip("12:01","13:16",42.0)
-print(t1.start)
-print(t1.end)
-print(t1.duration(t1.start,t1.end))
-print(t1.speed(42.0,75.0))
-'''
 
 
 class TestAppMethods(unittest.TestCase):
     #setup
     def setUp(self):
+
+        #setup Dan
         self.dan = Driver('Dan')
+        self.dan.addTrip("07:15","07:45",17.3)
+        self.dan.addTrip("06:12","06:32",21.8)
+
+        #setup kumi
         self.kumi = Driver('Kumi')
+
+        #setup lauren
         self.lauren = Driver('Lauren')
+        self.lauren.addTrip("12:01","13:16",42.0)
 
     def test_driver(self):
-        self.assertEqual(self.dan.name, 'Dan')
-        self.assertEqual(self.dan.total_miles,0)
-        self.assertEqual(self.dan.user_time,0)
-        self.assertEqual(self.dan.user_speed,0)
+        self.assertEqual(self.kumi.name, 'Kumi')
+        self.assertEqual(self.kumi.total_miles,0)
+        self.assertEqual(self.kumi.user_time,0)
+        self.assertEqual(len(self.kumi.trips),0)
+    
+    def test_addTrip(self):
+        self.kumi.addTrip("12:01","13:16",42.0)
+        self.assertEqual(len(self.kumi.trips),1)
 
-    def test_diff(self):
-        self.dan.diff("07:15","07:45")
-        self.assertEqual(type(self.dan.user_time),float)
-        self.assertEqual(self.dan.user_time,0.30)
-        self.dan.diff("06:12","06:32")
-        self.assertEqual(self.dan.user_time,0.50)
+    def test_getTotalTime(self):
+        self.dan.getTotalTime()
+        self.assertEqual(self.dan.user_time,50.0)
 
-    def test_miles(self):
-        self.dan.miles(17.3)
-        self.assertEqual(self.dan.total_miles, 17.3)
-        self.dan.miles(21.8)
+    def test_getTotalDistance(self):
+        self.dan.getTotalDistance()
         self.assertEqual(self.dan.total_miles, 39.1)
 
     def test_speed(self):
+        self.dan.getTotalDistance()
+        self.dan.getTotalTime()
+        #self.dan.avg_speed()
+        self.assertEqual(self.dan.avg_speed(),46.92)
 
-        self.dan.user_time = 0.50
-        self.dan.total_miles = 39.1
-        
-
-        self.dan.speed(self.dan.total_miles,self.dan.user_time)
-        self.assertEqual(self.dan.user_speed,46.92)
-
-        self.assertEqual(self.kumi.user_speed,0)
-
-        self.lauren.diff("12:01","13:16")
-        self.lauren.miles(42.0)
-        self.lauren.speed(42,self.lauren.user_time)
-        self.assertEqual(self.lauren.user_speed,36.52)
 
     def test_output(self):
-        self.dan.user_time = 0.50
-        self.dan.total_miles = 39.1
-        self.dan.speed(self.dan.total_miles,self.dan.user_time)
-        self.assertEqual(self.dan.user_speed,46.92)
+        self.assertEqual(self.dan.print_output(), "Dan: 39 miles @ 47 mph")
+        self.assertEqual(self.kumi.print_output(), "Kumi: 0 miles")
+        self.assertEqual(self.lauren.print_output(), "Lauren: 42 miles @ 34 mph")
 
 
-        self.assertEqual(self.dan.print_out(), "Dan: 39 miles @ 47 mph")
-        self.assertEqual(self.kumi.print_out(), "Kumi: 0 miles")
-
-
-    
 
 if __name__ == '__main__':
     unittest.main()
