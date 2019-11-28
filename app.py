@@ -35,12 +35,12 @@ class Driver:
     def getTotalDistance(self):
         distances = [trip.distance for trip in self.trips]
         for d in distances:
-            self.total_miles = self.total_miles + d
+            self.total_miles += d
 
     def getTotalTime(self):
         durations = [trip.minutes for trip in self.trips]
         for t in durations:
-            self.user_time = self.user_time + t
+            self.user_time += t
 
     #total miles
     def avg_speed(self):
@@ -49,9 +49,6 @@ class Driver:
 
 
     def print_output(self):
-
-        self.getTotalDistance()
-        self.getTotalTime()
 
         if self.total_miles == 0:
             return "{}: {} miles".format(self.name, self.total_miles)

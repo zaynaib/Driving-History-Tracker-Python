@@ -1,9 +1,10 @@
-#export my app.py class here then put this in a function in main
 from app import Driver, Trip
+import operator
 
-#have a class that calculates trips
 
 filepath = 'trips.txt'
+
+#create driver instances
 
 def initDriver(filepath):
     #open the file and create a person/driver object
@@ -19,9 +20,8 @@ def initDriver(filepath):
     return driver_dict
 
 
-#print(initDriver(filepath))
 
-
+#add trips to drivers
 def driverTrips(driver_dict):
     #open the file and save number of miles and times each person object
     with open(filepath) as fp:
@@ -43,17 +43,23 @@ def driverTrips(driver_dict):
 
                     #Add trips to driver
                     driver_obj.addTrip(start,end,miles)
+                  
                  
         return driver_dict
 
-    
-def driverOutput(d_info):
-    #open the file and save number of miles and times each person object
+#calculate total distance and times of drivers    
+def calcTotal(d_info):
     for key in d_info:
-        driver_obj = d_info[key]
-        print(driver_obj.print_output())
-    
-               
+        d_info[key].getTotalDistance()
+        d_info[key].getTotalTime()
+    return d_info
+
+
+#print out drivers sorted by highest number of miles   
+def driverOutput(d_info):
+    for driver in (sorted(d_info.values(),key=operator.attrgetter('total_miles'),reverse=True)):
+        print(driver.print_output())
+     
 
 if __name__ == '__main__':
   
@@ -63,6 +69,9 @@ if __name__ == '__main__':
 
     #add trips
     driver_trips = driverTrips(create_drivers)
+
+    #aggerate 
+    calcTotal(driver_trips)
 
     #print drivers mile information
     driverOutput(driver_trips)

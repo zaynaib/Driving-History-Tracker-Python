@@ -1,10 +1,20 @@
 # Driving History Tracker
 
+This script generates a report containing each driver with total miles driven and average speed. 
+
+## Prerequisite
+This script is created using `python 3`
+
+## How to run
+After downloading app from github.
+In the terminal `python cli.py`
+
 ## Problem Solving approach
 
 1. ### Choosing a language
 
 One of the first problems that I encountered was deciding what language would be best for solving this challenge. The lanagues that I am most familar with is Javascript and Python. I decided to go with Python because of two reasons. 1.) Javascript is best used for creating web apps. This challenge is more of a data engineering problem in the sense that I am reading and mainpulating data. Python is more suited for this task. 2.) Python has more syntactic sugar that makes it easier to create code.
+Truth be told this task would be easier with SQL.
 
 2. ### Creating a Plan to create the Solution 
 
