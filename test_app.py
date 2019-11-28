@@ -1,5 +1,14 @@
 import unittest
-from app import Driver
+from app import Driver, Trip
+
+'''
+t1 = Trip("12:01","13:16",42.0)
+print(t1.start)
+print(t1.end)
+print(t1.duration(t1.start,t1.end))
+print(t1.speed(42.0,75.0))
+'''
+
 
 class TestAppMethods(unittest.TestCase):
     #setup

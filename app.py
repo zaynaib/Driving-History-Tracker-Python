@@ -1,17 +1,28 @@
-from datetime import 
+from datetime import datetime
 class Trip:
     def __init__(self, start, end, distance):
         self.start = start
         self.end = end
         self.distance = distance
 
-    def duration():
-        # get diff between start and end in minutes
-        pass
 
-    def speed():
-        # get MPH
-        pass
+    def duration(self, startTime, endTime):
+        # get diff between start and end in minutes
+        time_format = '%H:%M'
+        delta_time = datetime.strptime(endTime, time_format) - datetime.strptime(startTime,time_format)
+        mintues = delta_time.seconds/60
+        return mintues
+        
+    #miles per hour   
+    def speed(self,distance,time):
+        mph = (distance/time)* 60
+        return mph
+
+t1 = Trip("12:01","13:16",42.0)
+print(t1.start)
+print(t1.end)
+print(t1.duration(t1.start,t1.end))
+print(t1.speed(42.0,75.0))
 
 class Driver:
     def __init__(self,name):
@@ -34,14 +45,7 @@ class Driver:
         return total
         
     # get time difference
-    def diff(self,startTime, endTime):
-        FMT = '%H:%M'
-        tdelta = datetime.strptime(endTime, FMT) - datetime.strptime(startTime, FMT)
-        hours,remainder = divmod(tdelta.seconds,3600)
-        mintues,seconds = divmod(remainder,60)
-        time = hours + (mintues/100)
-        self.user_time = self.user_time + time
-        return self.user_time
+
 
     #miles per hour
 
