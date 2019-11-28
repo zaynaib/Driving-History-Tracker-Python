@@ -16,14 +16,14 @@ class Trip:
     def speed(self):
         mph = (self.distance/self.minutes)* 60
         return mph
-'''
+
 t1 = Trip("12:01","13:16",42.0)
 print(t1.start)
 print(t1.end)
 print(t1.duration())
 #print(t1.speed(42.0,75.0))
 print(t1.speed())
-'''
+
 
 
 class Driver:
@@ -66,3 +66,33 @@ class Driver:
         return "{}: {} miles @ {} mph".format(self.name, round(self.total_miles),round(self.avg_speed()))
 
 
+'''
+p1 = Driver("Lauren")
+print(p1.name)
+p1.addTrip("12:01","13:16",42.0)
+print(p1.getTotalDistance())
+
+
+p2 = Driver("Dan")
+print(p2.name)
+p2.addTrip("07:15","07:45",17.3)
+p2.addTrip("06:12","06:32",21.8)
+
+#p2.getTotalDistance()
+#p2.getTotalTime()
+#p2.avg_speed()
+print(p2.print_output())
+'''
+
+
+p2 = Driver("Dan")
+print(p2.name)
+p2.addTrip("07:15","07:45",17.3)
+p2.addTrip("06:12","06:32",21.8)
+#p2.getTotalDistance()
+p2.getTotalTime()
+print(p2.user_time)
+#p2.avg_speed()
+'''
+print(p2.print_output())
+'''

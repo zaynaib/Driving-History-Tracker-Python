@@ -1,6 +1,25 @@
 import unittest
-from app import Driver
 
+from app import Driver,Trip
+
+
+class TestTripMethods(unittest.TestCase):
+    def setUp(self):
+        self.t1 = Trip("12:01","13:16",42.0)
+
+    def testInitTrip(self):
+        self.assertEqual(self.t1.start,"12:01")
+        self.assertEqual(self.t1.end,"13:16")
+        self.assertEqual(self.t1.distance, 42.0)
+
+    def testDuration(self):
+        self.t1.duration()
+        self.assertEqual(self.t1.minutes,75.0)
+
+    def testSpeed(self):
+        self.t1.duration()
+        self.t1.speed()
+        self.assertEqual(self.t1.speed(),33.6)
 
 
 class TestAppMethods(unittest.TestCase):
