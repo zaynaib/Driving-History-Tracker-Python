@@ -13,10 +13,14 @@ In the terminal `python cli.py`
 
 1. ### Choosing a language
 
-One of the first problems that I encountered was deciding what language would be best for solving this challenge. The lanagues that I am most familar with is Javascript and Python. I decided to go with Python because of two reasons. 1.) Javascript is best used for creating web apps. This challenge is more of a data engineering problem in the sense that I am reading and mainpulating data. Python is more suited for this task. 2.) Python has more syntactic sugar that makes it easier to create code.
+One of the first problems that I encountered was deciding what language would be best for solving this challenge. The lanagues that I am most familar with is Javascript and Python. I decided to go with Python because of two reasons.
+
+ 1.) Javascript is best used for creating web apps. This challenge is more of a data engineering problem in the sense that I am reading and mainpulating data. Python is more suited for this task.
+ 
+2.) Python has more syntactic sugar that makes it easier to create code.
 
 Truth be told this task would be easier with SQL.
-I could create a database with two tables driver and tables. These two tables would be join by a primary key of driver id. From there I would do my data aggerations 
+I could create a database with two tables driver and tables. These two tables would be join by a primary key of driver id. From there I would implement data aggerations.
 
 2. ### Creating a Plan to create the Solution 
 
@@ -27,8 +31,7 @@ There are two main actions in this problem.
 
 With these two action items I broke the problem into smaller parts.
 
-=========================================================================================================
-
+-------------
 **Finding the miles per hour for each driver**
 
 There are two main data models in this challenge which are **Trips** and **Drivers** .
@@ -40,14 +43,14 @@ The best way to represent these two data models is to create objects. Objects ma
 
 
 
-Main (behaviors) functions that the Trip class need to perform.
+Main behavior functions that the Trip class need to perform.
 
 - Calculate the duration of a time of a trip
 - Calculate the miles per hour (mph) of each trip
 
 
 
-Main (behaviors) functions that the Driver class needs to perform
+Main behavior functions that the Driver class needs to perform
 
 - Keep track of all indiviual trips driver has taken
 - aggreate total time driven
@@ -56,7 +59,20 @@ Main (behaviors) functions that the Driver class needs to perform
 - print out results
 
 
-It has 4 properties
+Trip has 4 properties
+
+- start (string) [Given by input text]
+- end (string) [Given by input text]
+- distance(Given by intput text)
+- minutes(int) [Calcuated by duration function]
+
+Most of these properties were pre determined by the input text that is given from this challenge.
+I decided to create minutes property for trips because I will need it later on when calculating the drivers average speed. 
+
+I did not create miles per hour property because I can always calculate mph. Indiviual trip speed is not needed for final output.
+
+
+Driver has 4 properties
 
 - name (string) [Name of the Driver]
 - user_time(float) [Total time driver has driven]
