@@ -121,3 +121,4 @@ I know that cli.py does not follow the DRY(Don't Repeat Yourself) paradigm. Ther
 **Edge Case**:
 
 An edge case that I did not get the chance to solve is duplicates. If someone has the same name as another person we could create ids. 
+Not saving mph as a property for Trip class could be troublesome if further functionality was added in the future. Lets say we want to reimburse a driver based on mph per trip. This would be easier to do if mph was a property.
