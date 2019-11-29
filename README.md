@@ -19,8 +19,7 @@ One of the first problems that I encountered was deciding what language would be
  
 2.) Python has more syntactic sugar that makes it easier to create code.
 
-Truth be told this task would be easier with SQL.
-I could create a database with two tables driver and tables. These two tables would be join by a primary key of driver id. From there I would implement data aggerations.
+This challenge would be easier to solve with SQL. I could create a database with two tables driver and trips. These two tables would be join by a primary key of driver id. After joinin the two tables I would implement data aggerations.
 
 2. ### Creating a Plan to create the Solution 
 
@@ -67,27 +66,32 @@ Trip has 4 properties
 - minutes(int) [Calcuated by duration function]
 
 Most of these properties were pre determined by the input text that is given from this challenge.
-I decided to create minutes property for trips because I will need it later on when calculating the drivers average speed. 
 
-I did not create miles per hour property because I can always calculate mph. Indiviual trip speed is not needed for final output.
+**Minute Property**
+
+I decided to create minutes property for trips because I will need it later when calculating the drivers average speed. 
+I used minutes instead of hours because not all trips are going to be in hour intervals. For example Dan total duration is 50 minutes. I could use floats to represent minutes but it would lead to more math conversions. The more math conversions there is more of a chance that I can make an error down the line with calculating mph.  
+
+
+I did not create miles per hour property because the indiviual trip speed is not needed for final output.
 
 
 Driver has 4 properties
 
 - name (string) [Name of the Driver]
-- user_time(float) [Total time driver has driven]
+- user_time(int) [Total time driver has driven]
 - user_speed(float) [Miles per hour of the drivers total time driving and total miles traveled]
 - total_miles(float) [Total miles driver has driven]
 - trips(list) [list of trip instances]
 
 Most of these properties are floats because I wanted to have more precise calculations.
-Trips property data structure is a list because I can store multiple objects, add on new trip instances, and delete trip instances. It would not make sense to use a tuple because its immuatble. A dictionary would not make sense either since we are attaching each unqiue driver objects with their trip.
+Trips property data structure is a list because I can store multiple objects, add on new trip instances, and delete trip instances. It would not make sense to use a tuple because its immuatble. Which means that we cannot add or edit any trips to the driver. 
 
 ### Behavoirs
 
 Duration 
 
-Calculates time difference between a start time and end time. Time is represented by a int. It is not a datetime object because you can't do math with datetime objects and primatives such as ints and floats. I decided to convert the time duration of a trip into minutes because it will make it simpler to calcuate miles per hour.It is easier to divide whole numbers instead of decimals.
+Calculates time difference between a start time and end time. Time is represented by a int. It is not a datetime object because you can't do math with datetime objects and primatives such as ints and floats. I decided to convert the time duration of a trip into minutes because it will make it simpler to calcuate miles per hour. It is easier to divide whole numbers instead of decimals.
 
 speed / avg_speed
 
@@ -104,9 +108,12 @@ The final half of the solution is reading the input files and calcuating each dr
 I decided to create four functions initDriver and driverTrips, calcTotal,driverOutput. 
 initDriver create instances of the Driver class. While driverTrips extracts driver trip information from input text file and adds the information to that particular driver.
 
-iniDriver returns a dictionary of drivers. I choose this data structure because it is easier to look up a driver via their name. It is much harder to lookup a specfic driver in a list. In order to do this I would have to know the exact index of the driver. 
+**iniDriver** returns a dictionary of drivers. I choose this data structure because it is easier to look up a driver via their name. It is much harder to lookup a specfic driver in a list. In order to do this I would have to know the exact index of the driver.
 
-calcTotal calculates the total distance and time of each driver while driverOutput prints each drivers speed/mileage information.
+**driverTrips**
+Uses the dictionary created from iniDriver function to loop up a specific driver and add their trips.
+
+**calcTotal** calculates the total distance and time of each driver while driverOutput prints each drivers speed/mileage information.
 
 I know that cli.py does not follow the DRY(Don't Repeat Yourself) paradigm. There are redundancies in my code. But I prefer to follow the single responsbility principal. The single responsbility principal (SRP) states that every method  should have responsibility for just a single task of that program's functionality. It makes it easier to debug and test my code.
 
